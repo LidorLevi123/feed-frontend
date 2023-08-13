@@ -1,31 +1,26 @@
 <template>
-  <section>
-    <AppHeader />
-    <RouterView/>
-    <UserMsg/>
+  <section class="app">
+    <MsgForm />
+    <CommentList />
   </section>
 </template>
 
 <script>
-
-
-import { userService } from './services/user.service'
-import { store } from './store/store'
-
-import AppHeader from './cmps/AppHeader.vue'
-import UserMsg from './cmps/UserMsg.vue'
-
+import MsgForm from './cmps/MsgForm.vue';
+import CommentList from './cmps/CommentList.vue';
 
 export default {
-
-  created() {
-    console.log('Vue App created')
-    const user = userService.getLoggedinUser()
-    if (user)  store.commit({type: 'setLoggedinUser', user})
-  },
-  components: {
-    AppHeader,
-    UserMsg
-  },
+    components: { 
+      MsgForm,
+      CommentList
+    }
 }
 </script>
+
+<style scoped="true" lang="scss">
+  .app {
+    display: grid;
+    justify-items: center;
+    row-gap: 10px;
+  }
+</style>

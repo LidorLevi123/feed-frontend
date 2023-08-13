@@ -1,0 +1,89 @@
+.msg-form {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 350px;
+    display: grid;
+    justify-items: center;
+    margin-block-start: 50px;
+
+    .title {
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .form {
+        display: grid;
+        margin-top: 20px;
+        width: 100%;
+
+        .group {
+            position: relative;
+
+            label {
+                font-size: 14px;
+                color: rgb(99, 102, 102);
+                position: absolute;
+                top: -10px;
+                left: 10px;
+                background-color: #fff;
+                transition: all .3s ease;
+            }
+
+            input,
+            textarea {
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                margin-bottom: 20px;
+                outline: 0;
+                width: 100%;
+                background-color: transparent;
+
+                &::placeholder {
+                    color: transparent;
+                }
+
+                &:placeholder-shown+label {
+                    top: 10px;
+                    background-color: transparent;
+                }
+
+                &:focus {
+                    border-color: #3366cc;
+                }
+
+                &:focus+label {
+                    top: -10px;
+                    left: 10px;
+                    background-color: #fff;
+                    color: #3366cc;
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+            }
+
+            textarea {
+                resize: none;
+                height: 100px;
+                margin-bottom: 5px;
+            }
+        }
+
+        button {
+            background-color: #3366cc;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: #27408b;
+            }
+        }
+    }
+}
