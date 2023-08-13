@@ -17,24 +17,25 @@
   
   
 <script>
+import { commentService } from '../services/comment.service.local'
 
 export default {
 
     data() {
         return {
-            comment: {
-                by: {
-                    email: '',
-                    imgUrl: `https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50`
-                },
-                txt: ''
-            }
+            comment: commentService.getEmptyComment()
         }
     },
 
     methods: {
-        onSubmitComment() {
-            console.log(this.by);
+        async onSubmitComment() {
+            try {
+                await this.$store.dispatch({ type: 'addComment', comment: this.comment })
+                this.comment = commentService.getEmptyComment()
+                console.log('Comment saved successfully!')
+            } catch (err) {
+                console.log('Could not save comment', err.message)
+            }
         }
     }
 }

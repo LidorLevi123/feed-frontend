@@ -1,7 +1,7 @@
 <template>
     <article class="comment-preview">
         <img :src="comment.by.imgUrl" alt="">
-        <h5>{{ comment.by.email }}</h5>
+        <h2>{{ comment.by.email }}</h2>
         <span>{{ comment.txt }}</span>
     </article>
 </template>

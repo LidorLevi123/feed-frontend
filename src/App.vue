@@ -1,7 +1,7 @@
 <template>
   <section class="app">
     <MsgForm />
-    <CommentList />
+    <CommentList @filter="loadComments" :comments="comments" />
   </section>
 </template>
 
@@ -10,17 +10,38 @@ import MsgForm from './cmps/MsgForm.vue';
 import CommentList from './cmps/CommentList.vue';
 
 export default {
-    components: { 
-      MsgForm,
-      CommentList
+
+  created() {
+    this.loadComments()
+  },
+
+  methods: {
+    async loadComments(filterBy) {
+      try {
+        await this.$store.dispatch({ type: 'loadComments', filterBy })
+      } catch (err) {
+        console.log('Could not load comments', err.message)
+      }
     }
+  },
+
+  computed: {
+    comments() {
+      return this.$store.getters.comments
+    }
+  },
+
+  components: {
+    MsgForm,
+    CommentList
+  }
 }
 </script>
 
 <style scoped="true" lang="scss">
-  .app {
-    display: grid;
-    justify-items: center;
-    row-gap: 10px;
-  }
+.app {
+  display: grid;
+  justify-items: center;
+  row-gap: 10px;
+}
 </style>
