@@ -43,24 +43,5 @@ export const commentStore = {
                 throw err
             }
         },
-        // async updateComment(context, { comment }) {
-        //     try {
-        //         comment = await commentService.save(comment)
-        //         context.commit(getActionUpdateComment(comment))
-        //         return comment
-        //     } catch (err) {
-        //         console.log('commentStore: Error in updateComment', err)
-        //         throw err
-        //     }
-        // },
-        // async removeComment(context, { commentId }) {
-        //     try {
-        //         await commentService.remove(commentId)
-        //         context.commit(getActionRemoveComment(commentId))
-        //     } catch (err) {
-        //         console.log('commentStore: Error in removeComment', err)
-        //         throw err
-        //     }
-        // },
     }
 }

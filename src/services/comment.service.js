@@ -26,12 +26,11 @@ async function save(comment) {
     if (comment._id) {
         savedComment = await httpService.put(`comment/${comment._id}`, comment)
     } else {
-        comment.by.imgUrl = `https://www.gravatar.com/avatar/${_encodeEmail(comment.by.email)}`
+        comment.by.imgUrl = `https://robohash.org/${comment.by.email}.png?set=set5`
         savedComment = await httpService.post('comment', comment)
     }
     return savedComment
 }
-
 
 function getEmptyComment() {
     return {
