@@ -15,13 +15,6 @@ export const commentStore = {
         addComment(state, { comment }) {
             state.comments.push(comment)
         },
-        // updateComment(state, { comment }) {
-        //     const idx = state.comments.findIndex(c => c._id === comment._id)
-        //     state.comments.splice(idx, 1, comment)
-        // },
-        // removeComment(state, { commentId }) {
-        //     state.comments = state.comments.filter(comment => comment._id !== commentId)
-        // },
     },
     actions: {
         async addComment(context, { comment }) {
