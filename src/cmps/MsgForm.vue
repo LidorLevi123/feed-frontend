@@ -17,7 +17,7 @@
   
   
 <script>
-import { commentService } from '../services/comment.service.local'
+import { commentService } from '../services/comment.service'
 
 export default {
 

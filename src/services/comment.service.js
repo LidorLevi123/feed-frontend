@@ -1,47 +1,49 @@
 import { httpService } from './http.service.js'
-import { utilService } from './util.service.js'
-import { userService } from './user.service.js'
+import md5 from 'md5'
 
-export const carService = {
+export const commentService = {
     query,
     getById,
     save,
     remove,
-    getEmptyCar,
-    addCarMsg
+    getEmptyComment
 }
 
-window.cs = carService // for console usage
+window.cs = commentService // for console usage
 
-async function query(filterBy = { txt: '', price: 0 }) {
-    return httpService.get('car', filterBy)
+async function query(filterBy = { email: '' }) {
+    return httpService.get('comment', filterBy)
 }
-function getById(carId) {
-    return httpService.get(`car/${carId}`)
+async function getById(commentId) {
+    return httpService.get(`comment/${commentId}`)
 }
 
-async function remove(carId) {
-    return httpService.delete(`car/${carId}`)
+async function remove(commentId) {
+    return httpService.delete(`comment/${commentId}`)
 }
-async function save(car) {
-    var savedCar
-    if (car._id) {
-        savedCar = await httpService.put(`car/${car._id}`, car)
+async function save(comment) {
+    var savedComment
+    if (comment._id) {
+        savedComment = await httpService.put(`comment/${comment._id}`, comment)
     } else {
-        savedCar = await httpService.post('car', car)
+        comment.by.imgUrl = `https://www.gravatar.com/avatar/${_encodeEmail(comment.by.email)}`
+        savedComment = await httpService.post('comment', comment)
     }
-    return savedCar
-}
-
-async function addCarMsg(carId, txt) {
-    const savedMsg = await httpService.post(`car/${carId}/msg`, {txt})
-    return savedMsg
+    return savedComment
 }
 
 
-function getEmptyCar() {
+function getEmptyComment() {
     return {
-        vendor: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
+        by: {
+            email: '',
+            imgUrl: ''
+        },
+        txt: ''
     }
+}
+
+function _encodeEmail(email) {
+    var hashedEmail = md5(email)
+    return hashedEmail.toLowerCase()
 }

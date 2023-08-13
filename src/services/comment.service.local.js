@@ -55,4 +55,4 @@ function getEmptyComment() {
 function _encodeEmail(email) {
     var hashedEmail = md5(email)
     return hashedEmail.toLowerCase()
-  }
+}
